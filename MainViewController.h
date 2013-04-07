@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+    NSArray *arr;
+}
+@property (retain, nonatomic) IBOutlet UITableView *mainTableView;
 
 @end

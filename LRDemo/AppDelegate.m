@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LeftViewController.h"
 #import "RightViewController.h"
+#import "GlobalDef.h"
 
 
 @implementation AppDelegate
@@ -17,6 +18,21 @@
 @synthesize mainViewController;
 @synthesize centerViewController;
 @synthesize deckController;
+
+
++ (UILabel*)createNavTitleView:(NSString *)title {
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = title;
+    label.font = [UIFont boldSystemFontOfSize:20.0f];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = NAVIGATION_TEXT_COLOR;
+    [label sizeToFit];
+    
+    return label;
+}
+
 
 - (void)setupMainView_iPhone
 {
@@ -59,22 +75,3 @@
 }
 
 @end
-
-
-
-//    self.leftController = [[LeftViewController alloc] initWithNibName:@"LeftViewController" bundle:nil];
-//    RightViewController* rightController = [[RightViewController alloc] initWithNibName:@"RightViewController" bundle:nil];
-//
-//    ViewController *centerController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-//    self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
-//    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
-//                                                                                    leftViewController:self.leftController
-//                                                                                   rightViewController:rightController];
-//    deckController.rightSize = 100;
-//    deckController.leftSize = 80;
-//
-//    /* To adjust speed of open/close animations, set either of these two properties. */
-//    // deckController.openSlideAnimationDuration = 0.15f;
-//    // deckController.closeSlideAnimationDuration = 0.5f;
-//
-//    self.window.rootViewController = deckController;

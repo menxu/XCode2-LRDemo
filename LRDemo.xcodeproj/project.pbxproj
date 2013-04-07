@@ -129,6 +129,13 @@
 		72E6D2C316FC51C700B70780 /* word_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72E6D25B16FC51C600B70780 /* word_s@2x.png */; };
 		72E6D2C516FC521D00B70780 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E6D1F116FC518A00B70780 /* IIViewDeckController.m */; };
 		72E6D2C616FC521D00B70780 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E6D1F316FC518A00B70780 /* WrapController.m */; };
+		72F5B912170BDE40007B0902 /* GlobalDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F5B911170BDE40007B0902 /* GlobalDef.m */; };
+		72F5B91E170C1430007B0902 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72F5B91D170C1430007B0902 /* Localizable.strings */; };
+		72F5B921170C1BF7007B0902 /* LRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F5B920170C1BF6007B0902 /* LRTableViewCell.m */; };
+		72F5B925170C1CEE007B0902 /* Blog.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F5B924170C1CEE007B0902 /* Blog.m */; };
+		72F5B928170C1F9F007B0902 /* LRDemoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F5B927170C1F9F007B0902 /* LRDemoAPI.m */; };
+		72F5B92B170C2089007B0902 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F5B92A170C2089007B0902 /* Client.m */; };
+		72F5B92D170C24AB007B0902 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72F5B92C170C24AB007B0902 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -263,6 +270,19 @@
 		72E6D25916FC51C600B70780 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		72E6D25A16FC51C600B70780 /* word@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "word@2x.png"; sourceTree = "<group>"; };
 		72E6D25B16FC51C600B70780 /* word_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "word_s@2x.png"; sourceTree = "<group>"; };
+		72F5B910170BDE40007B0902 /* GlobalDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDef.h; sourceTree = "<group>"; };
+		72F5B911170BDE40007B0902 /* GlobalDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalDef.m; sourceTree = "<group>"; };
+		72F5B91C170C1363007B0902 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		72F5B91D170C1430007B0902 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		72F5B91F170C1BF6007B0902 /* LRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRTableViewCell.h; sourceTree = "<group>"; };
+		72F5B920170C1BF6007B0902 /* LRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRTableViewCell.m; sourceTree = "<group>"; };
+		72F5B923170C1CEE007B0902 /* Blog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blog.h; sourceTree = "<group>"; };
+		72F5B924170C1CEE007B0902 /* Blog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blog.m; sourceTree = "<group>"; };
+		72F5B926170C1F9F007B0902 /* LRDemoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRDemoAPI.h; sourceTree = "<group>"; };
+		72F5B927170C1F9F007B0902 /* LRDemoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRDemoAPI.m; sourceTree = "<group>"; };
+		72F5B929170C2089007B0902 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		72F5B92A170C2089007B0902 /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		72F5B92C170C24AB007B0902 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72F5B92D170C24AB007B0902 /* CoreData.framework in Frameworks */,
 				72E6D1BB16FC365000B70780 /* QuartzCore.framework in Frameworks */,
 				72E6D18616FC35E300B70780 /* UIKit.framework in Frameworks */,
 				72E6D18816FC35E300B70780 /* Foundation.framework in Frameworks */,
@@ -280,13 +301,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		726E17AE17111FE3003D81B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				72F5B91F170C1BF6007B0902 /* LRTableViewCell.h */,
+				72F5B920170C1BF6007B0902 /* LRTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		726E17AF171141FB003D81B4 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				72E6D1A916FC360700B70780 /* ViewDeck */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
 		72E6D17616FC35E300B70780 = {
 			isa = PBXGroup;
 			children = (
+				726E17AF171141FB003D81B4 /* Vendor */,
+				72F5B922170C1CD0007B0902 /* Model */,
+				72F5B913170C0751007B0902 /* Utils */,
 				72E6D1DA16FC446D00B70780 /* Classes */,
 				72E6D18C16FC35E300B70780 /* Supporting Files */,
 				72E6D1BD16FC36CF00B70780 /* images */,
-				72E6D1A916FC360700B70780 /* ViewDeck */,
 				72E6D18B16FC35E300B70780 /* LRDemo */,
 				72E6D18416FC35E300B70780 /* Frameworks */,
 				72E6D18216FC35E300B70780 /* Products */,
@@ -304,6 +344,7 @@
 		72E6D18416FC35E300B70780 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				72F5B92C170C24AB007B0902 /* CoreData.framework */,
 				72E6D1BA16FC365000B70780 /* QuartzCore.framework */,
 				72E6D18516FC35E300B70780 /* UIKit.framework */,
 				72E6D18716FC35E300B70780 /* Foundation.framework */,
@@ -317,6 +358,12 @@
 			children = (
 				72E6D19416FC35E300B70780 /* AppDelegate.h */,
 				72E6D19516FC35E300B70780 /* AppDelegate.m */,
+				72F5B910170BDE40007B0902 /* GlobalDef.h */,
+				72F5B911170BDE40007B0902 /* GlobalDef.m */,
+				72F5B926170C1F9F007B0902 /* LRDemoAPI.h */,
+				72F5B927170C1F9F007B0902 /* LRDemoAPI.m */,
+				72F5B929170C2089007B0902 /* Client.h */,
+				72F5B92A170C2089007B0902 /* Client.m */,
 			);
 			path = LRDemo;
 			sourceTree = "<group>";
@@ -324,6 +371,7 @@
 		72E6D18C16FC35E300B70780 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				72F5B91D170C1430007B0902 /* Localizable.strings */,
 				72E6D18D16FC35E300B70780 /* LRDemo-Info.plist */,
 				72E6D18E16FC35E300B70780 /* InfoPlist.strings */,
 				72E6D19116FC35E300B70780 /* main.m */,
@@ -462,6 +510,7 @@
 		72E6D1DA16FC446D00B70780 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				726E17AE17111FE3003D81B4 /* View */,
 				72E6D1E016FC507900B70780 /* iPhone */,
 			);
 			name = Classes;
@@ -488,6 +537,22 @@
 			children = (
 			);
 			name = iPad_images;
+			sourceTree = "<group>";
+		};
+		72F5B913170C0751007B0902 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		72F5B922170C1CD0007B0902 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				72F5B923170C1CEE007B0902 /* Blog.h */,
+				72F5B924170C1CEE007B0902 /* Blog.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,6 +590,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 72E6D17616FC35E300B70780;
 			productRefGroup = 72E6D18216FC35E300B70780 /* Products */;
@@ -652,6 +718,7 @@
 				72E6D2C116FC51C700B70780 /* whiteArrow@2x.png in Resources */,
 				72E6D2C216FC51C700B70780 /* word@2x.png in Resources */,
 				72E6D2C316FC51C700B70780 /* word_s@2x.png in Resources */,
+				72F5B91E170C1430007B0902 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +736,11 @@
 				72E6D1E416FC509B00B70780 /* MainViewController.m in Sources */,
 				72E6D1E916FC50BA00B70780 /* LeftViewController.m in Sources */,
 				72E6D1EE16FC50CC00B70780 /* RightViewController.m in Sources */,
+				72F5B912170BDE40007B0902 /* GlobalDef.m in Sources */,
+				72F5B921170C1BF7007B0902 /* LRTableViewCell.m in Sources */,
+				72F5B925170C1CEE007B0902 /* Blog.m in Sources */,
+				72F5B928170C1F9F007B0902 /* LRDemoAPI.m in Sources */,
+				72F5B92B170C2089007B0902 /* Client.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +751,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				72E6D18F16FC35E300B70780 /* en */,
+				72F5B91C170C1363007B0902 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
