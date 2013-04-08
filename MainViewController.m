@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "GlobalDef.h"
+#import "LRDemoAPI.h"
 
 @interface MainViewController ()
 
@@ -54,18 +55,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initDate];
     [self setNavigationBar];
     [self setTableView];
 }
 
+-(void)initDate{
+    arr = [[NSArray alloc] initWithObjects:@"金刚经 第一章",@"金刚经 第二章",@"金刚经 第三章",@"金刚经 第四章",@"金刚经 第五章",@"金刚经 第六章",@"金刚经 第七章",@"金刚经 第八章",@"金刚经 第九章",@"金刚经 第十章",@"金刚经 第十一章",@"金刚经 第十二章", nil];
+    [LRDemoAPI getBlogList];
+    
+}
+
 - (void)setTableView{
-//    mainTableView.scrollEnabled = YES;
+    mainTableView.scrollEnabled = YES;
     mainTableView.delegate = self;
     mainTableView.dataSource = self;
     mainTableView.backgroundColor = [UIColor clearColor];
     mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     mainTableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    arr = [[NSArray alloc] initWithObjects:@"金刚经 第一章",@"金刚经 第二章",@"金刚经 第三章",@"金刚经 第四章",@"金刚经 第五章",@"金刚经 第六章",@"金刚经 第七章",@"金刚经 第八章",@"金刚经 第九章",@"金刚经 第十章",@"金刚经 第十一章",@"金刚经 第十二章", nil];
 }
 
 - (void)setNavigationBar{
