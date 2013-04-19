@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
 #import "IIViewDeckController.h"
+#import "MBProgressHUD.h"
 
 #define BLOG_TAG @"博客首页"
 #define APP_TITLE BLOG_TAG
@@ -22,6 +23,16 @@
 @property (retain, nonatomic) UINavigationController *centerViewController;
 @property (retain, nonatomic) IIViewDeckController* deckController;
 
+@property (nonatomic, retain) MBProgressHUD *HUD;
 
 + (UILabel*)createNavTitleView:(NSString *)title;
++ (AppDelegate *)sharedAppDelegate;
+
+- (void)showNetworkFailed:(UIView *)view;
+- (void)showInformation:(UIView *)view info:(NSString *)info;
+
+- (void)showProgress:(UIView *)view info:(NSString *)info;
+- (void)setProgress:(UIView *)view progress:(float)progress info:(NSString *)info;
+
+- (NSString *)pathForTemporaryFileWithPrefix:(NSString *)prefix;
 @end

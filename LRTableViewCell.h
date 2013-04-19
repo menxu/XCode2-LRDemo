@@ -2,9 +2,13 @@
 //  LRTableViewCell.h
 //  LRDemo
 //
-//  Created by menxu on 13-4-3.
+//  Created by menxu on 13-4-10.
 //  Copyright (c) 2013年 menxu. All rights reserved.
 //
+
+#import <UIKit/UIKit.h>
+#import "Blog.h"
+
 #define TYPE_IMAGE_HEIGHT       16
 #define TYPE_IMAGE_WIDTH        TYPE_IMAGE_HEIGHT
 
@@ -22,13 +26,7 @@
 
 #define CELL_CONTENT_WIDTH   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? SCREEN_WIDTH : ARTICLE_AREA_WIDTH_IPAD)
 
-
-#import <UIKit/UIKit.h>
-#import "Blog.h"
-
 @interface LRTableViewCell : UITableViewCell{
-    ContentType _type;
-    
     UILabel *_nameLabel;
     UILabel *_descriptionLabel;
     UILabel *_openCountLabel;
@@ -48,7 +46,6 @@
     
     BOOL _bRead;
 }
-
 @property (nonatomic, readonly) UILabel *nameLabel;
 @property (nonatomic, readonly) UILabel *descriptionLabel;
 @property (nonatomic, readonly) UILabel *openCountLabel;

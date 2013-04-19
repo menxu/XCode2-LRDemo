@@ -1,4 +1,5 @@
-//
+#pragma mark -
+#pragma mark DownloaderDelegate//
 //  main.m
 //  LRDemo
 //
