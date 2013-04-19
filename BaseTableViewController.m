@@ -115,20 +115,30 @@
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return NO;
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+//    return NO;
+//}
+- (void)showBlogList {
+    
+    [self.baseTableView reloadData];
+    
+    if (activityIndicator)
+    {
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = YES;
+    }
 }
 #pragma mark -
 #pragma mark ParserDelegate
 -(void)parser:(Parser *)parser didFailWithFinish:(NSMutableArray *)blogList{
-    blogItemsCached = blogList;
+
+    [blogItemsCached addObjectsFromArray:blogList];
     if ([blogItemsCached count] == 0 ) {
         
         self.blogItems = [blogItemsCached copy];
-        [self.blogItems release];
-        
+        [blogItems release];
         [blogItemsCached removeAllObjects];
-        
+
         if (_needRefreshed) {
             _needRefreshed = NO;
         }
@@ -141,7 +151,8 @@
         [[AppDelegate sharedAppDelegate] showInformation:self.view info:NSLocalizedString(@"没有更多内容了", @"")];
     }
     self.blogItems = [[blogItemsCached copy] autorelease];
-    [self.baseTableView reloadData];
+//    [self.baseTableView reloadData];
+    [self showBlogList];
     if (_needRefreshed) {
         _needRefreshed = NO;
     }
@@ -257,7 +268,7 @@
     
     if (blogTableViewCell == nil)
     {
-        blogTableViewCell = [[LRTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        blogTableViewCell = [[[LRTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
         
         // set selection color
         UIView *backgroundView = [[UIView alloc] initWithFrame:blogTableViewCell.frame];
@@ -323,10 +334,11 @@
     
     [baseTableView release];
     [_refreshHeaderView release];
+    
     self.blogItems = nil;
     [blogItemsCached release];
-    blogItemsCached = nil;
     self.lastUpDate = nil;
+    
     [super dealloc];
 }
 - (void)viewDidUnload {

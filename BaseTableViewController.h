@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parser.h"
 #import "EGORefreshTableHeaderView.h"
 
 #define SECTION_LENGTH 20 //TableView每次Load的Item数目

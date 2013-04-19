@@ -18,6 +18,7 @@
 		722B797B1720E9F80076C96C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 722B79791720E9B90076C96C /* EGORefreshTableHeaderView.m */; };
 		722B797F172128D90076C96C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 722B797E172128D90076C96C /* MBProgressHUD.m */; };
 		722B799117213B280076C96C /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 722B799017213B280076C96C /* StringUtils.m */; };
+		722B799D172163D60076C96C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 722B799C172163D60076C96C /* HomeViewController.m */; };
 		7253FD24171524230044FEBE /* LRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7253FD23171524230044FEBE /* LRTableViewCell.m */; };
 		726E17E917114491003D81B4 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 726E17B217114491003D81B4 /* ASIAuthenticationDialog.m */; };
 		726E17EA17114491003D81B4 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 726E17B517114491003D81B4 /* ASIDataCompressor.m */; };
@@ -58,8 +59,6 @@
 		72E6D19216FC35E300B70780 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E6D19116FC35E300B70780 /* main.m */; };
 		72E6D19616FC35E300B70780 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E6D19516FC35E300B70780 /* AppDelegate.m */; };
 		72E6D1BB16FC365000B70780 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E6D1BA16FC365000B70780 /* QuartzCore.framework */; };
-		72E6D1E416FC509B00B70780 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E6D1E216FC509B00B70780 /* MainViewController.m */; };
-		72E6D1E516FC509B00B70780 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E6D1E316FC509B00B70780 /* MainViewController.xib */; };
 		72E6D1E916FC50BA00B70780 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E6D1E716FC50B900B70780 /* LeftViewController.m */; };
 		72E6D1EA16FC50BA00B70780 /* LeftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E6D1E816FC50BA00B70780 /* LeftViewController.xib */; };
 		72E6D1EE16FC50CC00B70780 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E6D1EC16FC50CB00B70780 /* RightViewController.m */; };
@@ -195,6 +194,8 @@
 		722B797E172128D90076C96C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		722B798F17213B280076C96C /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
 		722B799017213B280076C96C /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtils.m; sourceTree = "<group>"; };
+		722B799B172163D60076C96C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		722B799C172163D60076C96C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		7253FD22171524230044FEBE /* LRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRTableViewCell.h; sourceTree = "<group>"; };
 		7253FD23171524230044FEBE /* LRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRTableViewCell.m; sourceTree = "<group>"; };
 		726E17B117114491003D81B4 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -271,9 +272,6 @@
 		72E6D19416FC35E300B70780 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		72E6D19516FC35E300B70780 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		72E6D1BA16FC365000B70780 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		72E6D1E116FC509B00B70780 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		72E6D1E216FC509B00B70780 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		72E6D1E316FC509B00B70780 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		72E6D1E616FC50B900B70780 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		72E6D1E716FC50B900B70780 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
 		72E6D1E816FC50BA00B70780 /* LeftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftViewController.xib; sourceTree = "<group>"; };
@@ -810,15 +808,14 @@
 		72E6D1E016FC507900B70780 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				72E6D1E116FC509B00B70780 /* MainViewController.h */,
-				72E6D1E216FC509B00B70780 /* MainViewController.m */,
-				72E6D1E316FC509B00B70780 /* MainViewController.xib */,
 				72E6D1E616FC50B900B70780 /* LeftViewController.h */,
 				72E6D1E716FC50B900B70780 /* LeftViewController.m */,
 				72E6D1E816FC50BA00B70780 /* LeftViewController.xib */,
 				72E6D1EB16FC50CB00B70780 /* RightViewController.h */,
 				72E6D1EC16FC50CB00B70780 /* RightViewController.m */,
 				72E6D1ED16FC50CB00B70780 /* RightViewController.xib */,
+				722B799B172163D60076C96C /* HomeViewController.h */,
+				722B799C172163D60076C96C /* HomeViewController.m */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -921,7 +918,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				72E6D19016FC35E300B70780 /* InfoPlist.strings in Resources */,
-				72E6D1E516FC509B00B70780 /* MainViewController.xib in Resources */,
 				72E6D1EA16FC50BA00B70780 /* LeftViewController.xib in Resources */,
 				72E6D1EF16FC50CC00B70780 /* RightViewController.xib in Resources */,
 				72E6D25C16FC51C600B70780 /* 37x-Checkmark.png in Resources */,
@@ -1055,7 +1051,6 @@
 				72E6D2C616FC521D00B70780 /* WrapController.m in Sources */,
 				72E6D19216FC35E300B70780 /* main.m in Sources */,
 				72E6D19616FC35E300B70780 /* AppDelegate.m in Sources */,
-				72E6D1E416FC509B00B70780 /* MainViewController.m in Sources */,
 				72E6D1E916FC50BA00B70780 /* LeftViewController.m in Sources */,
 				72E6D1EE16FC50CC00B70780 /* RightViewController.m in Sources */,
 				72F5B912170BDE40007B0902 /* GlobalDef.m in Sources */,
@@ -1091,6 +1086,7 @@
 				72F4A266171FD1D000EA5E5F /* BaseTableViewController.m in Sources */,
 				722B797F172128D90076C96C /* MBProgressHUD.m in Sources */,
 				722B799117213B280076C96C /* StringUtils.m in Sources */,
+				722B799D172163D60076C96C /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

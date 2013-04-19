@@ -17,7 +17,7 @@
 @synthesize HUD;
 
 @synthesize window;
-@synthesize mainViewController;
+@synthesize homeViewController;
 @synthesize centerViewController;
 @synthesize deckController;
 
@@ -38,12 +38,17 @@
 
 - (void)setupMainView_iPhone
 {
-    self.mainViewController = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil] autorelease];
-    // Left & Right
-    LeftViewController *leftController = [[LeftViewController alloc] initWithNibName:@"LeftViewController" bundle:nil];
-    RightViewController * rightController = [[RightViewController alloc] initWithNibName:@"RightViewController" bundle:nil];
     
-    self.centerViewController = [[[UINavigationController alloc] initWithRootViewController:self.mainViewController] autorelease];
+    // Left & Right
+//    LeftViewController *leftController = [[LeftViewController alloc] initWithNibName:@"LeftViewController" bundle:nil];
+//    RightViewController * rightController = [[RightViewController alloc] initWithNibName:@"RightViewController" bundle:nil];
+    
+    LeftViewController *leftController = [[LeftViewController alloc] init];
+    RightViewController * rightController = [[RightViewController alloc] init];
+    
+    self.homeViewController = [[[HomeViewController alloc] init] autorelease];
+    
+    self.centerViewController = [[[UINavigationController alloc] initWithRootViewController:self.homeViewController] autorelease];
     
     self.deckController =  [[[IIViewDeckController alloc] initWithCenterViewController:self.centerViewController
                                                                     leftViewController:leftController
