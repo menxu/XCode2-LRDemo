@@ -159,7 +159,6 @@
 - (void)dealloc {
     [centerViewController release];
     self.centerViewController = nil;
-    [self.HUD release];
     self.HUD = nil;
     [window release];
     [super dealloc];

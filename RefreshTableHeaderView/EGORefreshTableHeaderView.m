@@ -6,6 +6,7 @@
 #define  RefreshViewHight 65.0f
 
 #import "EGORefreshTableHeaderView.h"
+#import "StringUtils.h"
 
 
 #define TEXT_COLOR     [UIColor darkGrayColor]
@@ -89,7 +90,8 @@
     
     if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceLastUpdated:)]) {
         
-    NSDate *lastUpdateDate = [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
+//    NSDate *lastUpdateDate =
+        [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
         
     } else {
         
@@ -158,7 +160,6 @@
 
 #pragma mark -
 #pragma mark ScrollView Methods
-
 //手指屏幕上不断拖动调用此方法
 - (void)egoRefreshScrollViewDidScroll:(UITableView *)tableView {  
     
