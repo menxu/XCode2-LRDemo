@@ -42,7 +42,7 @@ static UIImage* defaultBackgroundImage;
     if (data == nil) { return;}
     Blog *blog = data;
     [self setBackgroundImage:nil];
-    [self setName:blog.Title];
+    [self setName:[NSString stringWithFormat:@"%d  %@",blog.Id,blog.Title,blog.Content]];
 //    [self setDescription:article.Description];
 //    [self setOpenCount:article.OpenCount];
 }

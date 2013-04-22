@@ -23,14 +23,14 @@
 
 
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame: frame];
-    if (self) {
+    if (self = [super initWithFrame: frame]) {
         
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
-
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, RefreshViewHight - 30.0f, self.frame.size.width, 20.0f)];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        
         label.font = [UIFont systemFontOfSize:11.0f];
         label.textColor = [UIColor grayColor];
         label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
@@ -41,7 +41,7 @@
         _lastUpdatedLabel=label;
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, RefreshViewHight - 48.0f, self.frame.size.width, 20.0f)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         label.font = [UIFont boldSystemFontOfSize:13.0f];
         label.textColor = TEXT_COLOR;
@@ -54,9 +54,9 @@
         [label release];
         
         CALayer *layer = [CALayer layer];
-        layer.frame = CGRectMake(60.0f, 20.0f, 30.0f, 30.0f);
+        layer.frame = CGRectMake(60.0f, frame.size.height - 45.0f, 30.0f, 30.0f);
         layer.contentsGravity = kCAGravityResizeAspect;
-        layer.contents = (id)[UIImage imageNamed:@"whiteArrow.png"].CGImage;
+        layer.contents = (id)[UIImage imageNamed:@"blueArrow.png"].CGImage;
         
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
@@ -90,8 +90,7 @@
     
     if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceLastUpdated:)]) {
         
-//    NSDate *lastUpdateDate =
-        [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
+        NSDate *lastUpdateDate = [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
         
     } else {
         
@@ -101,10 +100,10 @@
 }
 
 - (void)setState:(EGOPullRefreshState)aState{
-    
+     
     switch (aState) {
         case EGOOPullRefreshPulling:
-            
+           NSLog(@"astate  EGOOPullRefreshPulling");
             _statusLabel.text = NSLocalizedString(@"松开即可更新", @"");
             [CATransaction begin];
             [CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
@@ -113,7 +112,7 @@
             
             break;
         case EGOOPullRefreshNormal:
-            
+            NSLog(@"astate  EGOOPullRefreshNormal");
             if (_state == EGOOPullRefreshPulling) {
                 [CATransaction begin];
                 [CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
@@ -133,7 +132,7 @@
             
             break;
         case EGOOPullRefreshLoading:
-            
+            NSLog(@"astate  EGOOPullRefreshLoading");
             _statusLabel.text = NSLocalizedString(@"加载中...", @"");
             [_activityView startAnimating];
             [CATransaction begin];
@@ -160,6 +159,7 @@
 
 #pragma mark -
 #pragma mark ScrollView Methods
+
 //手指屏幕上不断拖动调用此方法
 - (void)egoRefreshScrollViewDidScroll:(UITableView *)tableView {  
     

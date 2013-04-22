@@ -14,9 +14,8 @@
 
 @implementation AppDelegate
 
-@synthesize HUD;
-
 @synthesize window;
+@synthesize HUD;
 @synthesize homeViewController;
 @synthesize centerViewController;
 @synthesize deckController;
@@ -97,8 +96,10 @@
     return result;
 }
 - (void)showNetworkFailed:(UIView *)view {
-    [self showInformation:view info:NSLocalizedString(@"网络连接失败，请检查网络...", @"")];
+    
+    [self showInformation:view info:NSLocalizedString(@"网络连接失败，请检查网络", @"")];
 }
+
 - (void)showInformation:(UIView *)view info:(NSString *)info {
     if (HUD) {
         [HUD removeFromSuperview];
@@ -149,6 +150,7 @@
 }
 
 - (void)setProgress:(UIView *)view progress:(float)progress info:(NSString *)info {
+    
     if (HUD == nil)
         return;
     
@@ -161,10 +163,13 @@
 }
 
 
+
+
+
 - (void)dealloc {
     [centerViewController release];
-    self.centerViewController = nil;
     self.HUD = nil;
+    self.centerViewController = nil;
     [window release];
     [super dealloc];
 }

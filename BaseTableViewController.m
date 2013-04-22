@@ -52,21 +52,26 @@
     self.baseTableView.dataSource   = self;
     [self.view addSubview:self.baseTableView];
     
+    self.baseTableView.scrollsToTop = YES;
+    
     self.baseTableView.rowHeight = 70;
     self.baseTableView.backgroundColor = CELL_BACKGROUND;
     self.baseTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
+    self.baseTableView.showsVerticalScrollIndicator = YES;
     self.baseTableView.userInteractionEnabled = YES;
     self.baseTableView.alpha = 1;
 }
 - (void)initRefreshHeaderView{
+    _reloading = NO;
     if (_refreshHeaderView == nil) {
-        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -60.0f, SCREEN_WIDTH, 60)];
-        view.delegate = self;
-        [self.baseTableView insertSubview:view aboveSubview:0];
-        self.refreshHeaderView = view;
-        [view release];
-    }
-    [_refreshHeaderView refreshLastUpdatedDate];
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.baseTableView.bounds.size.height, self.view.frame.size.width, self.baseTableView.bounds.size.height)];
+		view.delegate = self;
+		[self.baseTableView addSubview:view];
+		_refreshHeaderView = view;
+		[view release];
+	}
+	[_refreshHeaderView refreshLastUpdatedDate];
 }
 - (BOOL)initActivityIndicator{
     activityIndicator.hidesWhenStopped = YES;
@@ -172,9 +177,6 @@
 #pragma mark UIScrollViewDelegate Methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_refreshHeaderView egoRefreshScrollViewDidScroll:(UITableView *)scrollView];
-//    if ([delegate respondsToSelector:@selector(baseTableViewDidScroll:)]) {
-//        [delegate baseTableViewDidScroll:self];
-//    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
