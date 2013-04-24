@@ -14,6 +14,7 @@
     NSString *_CategoryId;
     NSString *_Title;
     NSString *_Content;
+    NSString *_ImageUrl;
     NSString *_SourceImageUrl;
     NSString *_CreatedTime;
     NSString *_UpdatedTime;
@@ -24,6 +25,7 @@
 @property (nonatomic, copy) NSString *CategoryId;
 @property (nonatomic, copy) NSString *Title;
 @property (nonatomic, copy) NSString *Content;
+@property (nonatomic, copy) NSString *ImageUrl;
 @property (nonatomic, copy) NSString *SourceImageUrl;
 @property (nonatomic, copy) NSString *CreatedTime;
 @property (nonatomic, copy) NSString *UpdatedTime;

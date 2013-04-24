@@ -90,7 +90,8 @@
     
     if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceLastUpdated:)]) {
         
-        NSDate *lastUpdateDate = [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
+//        NSDate *lastUpdateDate =
+        [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
         
     } else {
         

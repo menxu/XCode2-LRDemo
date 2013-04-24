@@ -140,7 +140,7 @@
     [blogItemsCached addObjectsFromArray:blogList];
     if ([blogItemsCached count] == 0 ) {
         
-        self.blogItems = [blogItemsCached copy];
+        self.blogItems = [[blogItemsCached copy] autorelease];
         [blogItems release];
         [blogItemsCached removeAllObjects];
 

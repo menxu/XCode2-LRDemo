@@ -27,15 +27,15 @@
 #define CELL_CONTENT_WIDTH   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? SCREEN_WIDTH : ARTICLE_AREA_WIDTH_IPAD)
 
 @interface LRTableViewCell : UITableViewCell{
-    UILabel *_nameLabel;
-    UILabel *_descriptionLabel;
+    UILabel *_creatorNameLabel;
+    UILabel *_categoryNameLabel;
+    UILabel *_titleLabel;
+    UILabel *_contentLabel;
+    UILabel *_createdTimeLabel;
     UILabel *_openCountLabel;
-    UILabel *_publishDateLabel;
     
-    UIImageView *_typeImageView;
-    
-    UIImageView* _coverImageView;
-    NSString *coverImageUrl;
+    UIImageView *_creatorImageView;
+    NSString *creatorImageUrl;
     
     UIButton *_favoriteButton;
     
@@ -46,14 +46,14 @@
     
     BOOL _bRead;
 }
-@property (nonatomic, readonly) UILabel *nameLabel;
-@property (nonatomic, readonly) UILabel *descriptionLabel;
+@property (nonatomic, readonly) UILabel *creatorNameLabel;
+@property (nonatomic, readonly) UILabel *categoryNameLabel;
+@property (nonatomic, readonly) UILabel *titleLabel;
+@property (nonatomic, readonly) UILabel *contentLabel;
+@property (nonatomic, readonly) UILabel *createdTimeLabel;
 @property (nonatomic, readonly) UILabel *openCountLabel;
-@property (nonatomic, readonly) UILabel *publishDateLabel;
 
-@property (nonatomic, readonly) UIImageView *typeImageView;
-
-@property (nonatomic, readonly) UIImageView *coverImageView;
+@property (nonatomic, readonly) UIImageView *creatorImageView;
 
 @property (nonatomic, readonly) UIButton *favoriteButton;
 

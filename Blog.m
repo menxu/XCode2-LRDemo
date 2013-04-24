@@ -10,6 +10,7 @@
 #import "GlobalDef.h"
 #import "LRDemoAPI.h"
 #import <CoreData/CoreData.h>
+#import "Client.h"
 
 
 @implementation Blog
@@ -19,6 +20,7 @@
 @synthesize CategoryId      = _CategoryId;
 @synthesize Title           = _Title;
 @synthesize Content         = _Content;
+@synthesize ImageUrl        = _ImageUrl;
 @synthesize SourceImageUrl  = _SourceImageUrl;
 @synthesize CreatedTime     = _CreatedTime;
 @synthesize UpdatedTime     = _UpdatedTime;
@@ -39,6 +41,23 @@
     _Content = [[[source stringByReplacingOccurrencesOfString:@"\r" withString:@""]
                      stringByReplacingOccurrencesOfString:@"\n" withString:@""]
                     retain];
+    
+    //如果博客封面路径是相对路径改为绝对路径
+    if ([_ImageUrl hasPrefix:@"../"]) {
+        NSRange range = {0};
+        range.location = 2;
+        range.length = [_ImageUrl length] - range.location;
+        
+        NSString *imageFullPath = [[NSString alloc] initWithFormat:@"%@%@%@%@%@",
+                                   MAIN_PROCOTOL,MAIN_HOST,MAIN_PORT,DOWNLOAD_RESOURCE_PATH,[_ImageUrl substringWithRange:range]];
+        [_ImageUrl release];
+        _ImageUrl = imageFullPath;
+        NSString *imageFullPath2 = [[NSString alloc] initWithFormat:@"%@%@%@%@%@",
+                                    MAIN_PROCOTOL,MAIN_HOST,MAIN_PORT,DOWNLOAD_RESOURCE_PATH,[[dictionary objectForKey:@"image_url"] substringWithRange:range]];
+        _SourceImageUrl = imageFullPath2;
+    }else{
+        _SourceImageUrl = [_ImageUrl copy];
+    }
 }
 
 - (id)initWithJsonDictionary:(NSDictionary*)dictionary {
@@ -71,6 +90,7 @@
     RELEASE_SAFELY(_UserId);
     RELEASE_SAFELY(_CategoryId)
     RELEASE_SAFELY(_Title);
+    RELEASE_SAFELY(_ImageUrl);
     RELEASE_SAFELY(_SourceImageUrl);
     RELEASE_SAFELY(_CreatedTime);
     RELEASE_SAFELY(_UpdatedTime);

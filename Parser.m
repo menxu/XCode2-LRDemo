@@ -97,7 +97,6 @@
         failed = YES;
         parsing = NO;
         parsingComplete = YES;
-        NSLog(@"%@", description);
     }
     // Inform delegate
     if (!_useCacheFirst && !_canceled && [_delegate respondsToSelector:@selector(parser:didFailWithError:)])
@@ -119,7 +118,6 @@
 }
 
 - (void)parserDidFinish:(NSString *)responseString{
-    NSLog(@"- (void)parserDidFinish:(NSString *)responseString :  %@" , responseString);
     [_delegate parser:self didFailWithFinish:[self get_by_json_blogLists:responseString]];
 }
 #pragma mark -

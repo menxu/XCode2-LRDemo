@@ -15,58 +15,82 @@
 static UIImage* defaultBackgroundImage;
 //static UIImage* defaultTagBgImage;
 
+@synthesize creatorNameLabel    = _creatorNameLabel;
+@synthesize titleLabel          = _titleLabel;
+@synthesize contentLabel        = _contentLabel;
+@synthesize createdTimeLabel    = _createdTimeLabel;
 
-@synthesize nameLabel = _nameLabel;
-@synthesize descriptionLabel = _descriptionLabel;
-@synthesize publishDateLabel = _publishDateLabel;
-@synthesize typeImageView = _typeImageView;
+@synthesize creatorImageView    = _creatorImageView;
+@synthesize favoriteButton      = _favoriteButton;
 
-@synthesize coverImageView = _coverImageView;
-@synthesize systemTagImageView = _systemTagImageView;
-@synthesize seriesTagImageView = _seriesTagImageView;
-@synthesize systemTagButton = _systemTagButton;
-@synthesize seriesTagButton = _seriesTagButton;
+@synthesize systemTagImageView  = _systemTagImageView;
+@synthesize seriesTagImageView  = _seriesTagImageView;
+@synthesize systemTagButton     = _systemTagButton;
+@synthesize seriesTagButton     = _seriesTagButton;
 
-@synthesize openCountLabel = _openCountLabel;
-@synthesize favoriteButton = _favoriteButton;
+@synthesize openCountLabel      = _openCountLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
 	if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
 	}
-	
 	return self;
-    
 }
 
 - (void)setDataSource:(id)data{
     if (data == nil) { return;}
     Blog *blog = data;
     [self setBackgroundImage:nil];
-    [self setName:[NSString stringWithFormat:@"%d  %@",blog.Id,blog.Title,blog.Content]];
+//    [self setUserName:blog.UserId];
+//    [self setCategoryName:blog.CategoryId];
+    [self setTitle:blog.Title];
+    [self setContent:blog.Content];
+//    [self setSourseImage:blog.SourceImageUrl];
+//    [self setCreatedTime:blog.CreatedTime];
+
 //    [self setDescription:article.Description];
 //    [self setOpenCount:article.OpenCount];
 }
 
-- (void)setName:(NSString *)newName{
-    if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc] init];
+- (void)setTitle:(NSString *)title{
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
         if ([[UIDevice currentDevice] userInterfaceIdiom ] == UIUserInterfaceIdiomPhone ) {
-            _nameLabel.font = English_font_title;
+            _titleLabel.font = English_font_title;
         } else {
-            _nameLabel.font = English_font_title_iPad;
+            _titleLabel.font = English_font_title_iPad;
         }
-        _nameLabel.textColor = ZBSTYLE_textColor;
-        _nameLabel.highlightedTextColor = ZBSTYLE_highlightedTextColor;
-        _nameLabel.textAlignment = UITextAlignmentLeft;
-        _nameLabel.contentMode = UIViewContentModeTop;
-        _nameLabel.lineBreakMode = UILineBreakModeTailTruncation;
-        _nameLabel.numberOfLines = 0;
+        _titleLabel.textColor            = ZBSTYLE_textColor;
+        _titleLabel.highlightedTextColor = ZBSTYLE_highlightedTextColor;
+        _titleLabel.textAlignment        = UITextAlignmentLeft;
+        _titleLabel.contentMode          = UIViewContentModeTop;
+        _titleLabel.lineBreakMode        = UILineBreakModeTailTruncation;
+        _titleLabel.numberOfLines        = 0;
         
-        [self.contentView addSubview:_nameLabel];
+        [self.contentView addSubview:_titleLabel];
     }
     
-    NSLog(@"setName:  nameLabel = %@",newName);
-    _nameLabel.text = newName ? newName : NSLocalizedString(@"未命名", @"nil");
+    NSLog(@"setName:  nameLabel = %@",title);
+    _titleLabel.text = title ? title : NSLocalizedString(@"未命名", @"nil");
+}
+- (void)setContent:(NSString *)content{
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] init];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            _contentLabel.font = English_font_des;
+        }else{
+            _contentLabel.font = English_font_des_iPad;
+        }
+        _contentLabel.textColor            = ZBSTYLE_tableSubTextColor;
+        _contentLabel.highlightedTextColor = ZBSTYLE_highlightedTextColor;
+        _contentLabel.textAlignment        = UITextAlignmentLeft;
+        _contentLabel.contentMode          = UIViewContentModeTop;
+        _contentLabel.lineBreakMode        = UILineBreakModeTailTruncation;
+        _contentLabel.numberOfLines        = 0;
+        
+        [self.contentView addSubview:_contentLabel];
+    }
+    _contentLabel.text = content ? content : @"";
+    
 }
 
 - (void)setFavorite:(BOOL)favorite tagId:(NSInteger)tagId target:(id)target action:(SEL)selector{
@@ -77,42 +101,117 @@ static UIImage* defaultBackgroundImage;
 }
 
 + (CGFloat)rowHeightForObject:(id)object{
-    return 30.0;
+    if (object == nil) {
+        return 0.0;
+    }
+    Blog *blog = object;
+    CGFloat creatorImageHeight = [blog.ImageUrl length] > 0 ? COVER_BACKGROUND_HEIGHT : kTableCellSmallMargin;
+    
+    UIFont *titleFont   = nil;
+    UIFont *contentFont = nil;
+    if ([[UIDevice currentDevice] userInterfaceIdiom ] == UIUserInterfaceIdiomPhone) {
+        contentFont = English_font_des;
+        titleFont   = English_font_title;
+    }else{
+        contentFont = English_font_des_iPad;
+        titleFont   = English_font_title_iPad;
+    }
+    //主题
+    CGSize titleLabelSize = [blog.Title sizeWithFont:titleFont
+                                   constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH, CGFLOAT_MAX)
+                                       lineBreakMode:UILineBreakModeMiddleTruncation];
+    
+    //子标题
+    CGSize subtitleLabelSize = [@"Hellow Blog" sizeWithFont:contentFont
+                                          constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH, CGFLOAT_MAX)
+                                              lineBreakMode:UILineBreakModeMiddleTruncation];
+    CGSize contentLabelSize = {0};
+    if ([blog.Content length] > 0) {
+        contentLabelSize = [blog.Content sizeWithFont:contentFont
+                                    constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH, CGFLOAT_MAX)
+                                        lineBreakMode:UILineBreakModeWordWrap];
+        if (contentLabelSize.height > 20*subtitleLabelSize.height) {
+            contentLabelSize.height = 20*subtitleLabelSize.height;
+        }
+    }
+    CGFloat textHeight = creatorImageHeight + titleLabelSize.height + subtitleLabelSize.height + SUBTITLE_HEIGHT
+    + contentLabelSize.height + (contentLabelSize.height > 0 ? kTableCellSmallMargin : 0);
+    return textHeight + kTableCellSmallMargin * 3;
 }
 
 - (void)setRead:(BOOL)read{
     
 }
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor{
     [super setBackgroundColor:backgroundColor];
     
-    _nameLabel.backgroundColor = [UIColor clearColor];
+    _titleLabel.backgroundColor     = [UIColor clearColor];
+    _contentLabel.backgroundColor   = [UIColor clearColor];
+    
 }
 
 - (void)prepareForReuse {
     [super prepareForReuse];
     
-    _nameLabel.text = nil;
-    _nameLabel.textColor = [UIColor blackColor];
+    _titleLabel.text = nil;
+    _titleLabel.textColor = [UIColor blackColor];
+    _contentLabel.text = nil;
+    
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
     UIFont* titleFont = nil;
-//    UIFont* descriptionFont = nil;
-//    descriptionFont = English_font_des;
-    titleFont = English_font_title;
+    UIFont* contentFont = nil;
     
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        contentFont = English_font_des;
+        titleFont       = English_font_title;
+    }else{
+        contentFont = English_font_title_iPad;
+        titleFont       = English_font_title_iPad;
+    }
+    
+    CGSize subtitleLableSize = [@"2013-4-24" sizeWithFont:contentFont
+                                             constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH, CGFLOAT_MAX)
+                                             lineBreakMode:UILineBreakModeTailTruncation];
     //当前View的x坐标
     CGFloat left = kTableCellSmallMargin;
     //当前View的y坐标
     CGFloat top = kTableCellSmallMargin;
     //取得文章标题的高度
-    CGSize nameLabelSize = [_nameLabel.text sizeWithFont:titleFont
-                                       constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH, CGFLOAT_MAX)
-                                           lineBreakMode:UILineBreakModeTailTruncation];
-    _nameLabel.frame = CGRectMake(left, top, CELL_CONTENT_WIDTH - 2*kTableCellSmallMargin, nameLabelSize.height);
+    CGSize nameLabelSize = [_titleLabel.text sizeWithFont:titleFont
+                                             constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH, CGFLOAT_MAX)
+                                             lineBreakMode:UILineBreakModeTailTruncation];
+    _titleLabel.frame = CGRectMake(left, top, CELL_CONTENT_WIDTH - 2*kTableCellSmallMargin, nameLabelSize.height);
+    
+    //_creatorImageView 在 _titleLabel 之下
+    top  = (_titleLabel.frame.origin.y + _titleLabel.frame.size.height);
+    left = (CELL_CONTENT_WIDTH - COVER_BACKGROUND_WIDTH) / 2;
+    if ([creatorImageUrl length] > 0) {
+        _creatorImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _creatorImageView.frame       = CGRectMake(kTableCellSmallMargin,
+                                                   top + (COVER_BACKGROUND_HEIGHT - COVER_IMAGE_HEIGHT)/2,
+                                                   COVER_IMAGE_WIDTH,
+                                                   COVER_IMAGE_HEIGHT);
+        top += COVER_BACKGROUND_HEIGHT;
+    }else{
+        _creatorImageView.frame = CGRectZero;
+        top += kTableCellSmallMargin;
+    }
+    //取得_contentLabel的宽高
+    CGSize contentLableSize = [_contentLabel.text sizeWithFont:contentFont
+                                                  constrainedToSize:CGSizeMake(CELL_CONTENT_WIDTH, CGFLOAT_MAX)
+                                                  lineBreakMode:UILineBreakModeWordWrap];
+    //设置_contentLabel的坐标
+    _contentLabel.frame = CGRectMake(kTableCellSmallMargin, top, CELL_CONTENT_WIDTH - 2*kTableCellSmallMargin, contentLableSize.height);
+    
+    if (contentLableSize.height > 0) {
+        top += contentLableSize.height + kTableCellSmallMargin;
+    }
+    NSLog(@"%d  %d  %d",left,top,subtitleLableSize.height);
 }
 
 //theImage为nil时使用默认的CellBackground.png作为表格Cell背景
@@ -145,19 +244,19 @@ static UIImage* defaultBackgroundImage;
 - (void)dealloc{
     [super dealloc];
     
-    RELEASE_SAFELY(_nameLabel);
+    RELEASE_SAFELY(_creatorNameLabel);
+    RELEASE_SAFELY(_categoryNameLabel);
+    RELEASE_SAFELY(_titleLabel);
+    RELEASE_SAFELY(_contentLabel);
+    RELEASE_SAFELY(_createdTimeLabel);
     RELEASE_SAFELY(_openCountLabel);
-    RELEASE_SAFELY(_publishDateLabel);
-    RELEASE_SAFELY(_typeImageView);
-    RELEASE_SAFELY(_coverImageView);
+    
+    RELEASE_SAFELY(_creatorImageView);
     RELEASE_SAFELY(_favoriteButton);
-    RELEASE_SAFELY(coverImageUrl);
+    
     RELEASE_SAFELY(_systemTagImageView);
     RELEASE_SAFELY(_seriesTagImageView);
     RELEASE_SAFELY(_systemTagButton);
     RELEASE_SAFELY(_seriesTagButton);
-    
-   
 }
-
 @end
