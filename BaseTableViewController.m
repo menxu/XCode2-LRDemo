@@ -303,6 +303,30 @@
 #pragma mark -
 #pragma mark Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.baseTableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == [blogItems count]) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (cell) {
+            [(UIActivityIndicatorView *)[cell viewWithTag:200] startAnimating];
+            cell.textLabel.text = NSLocalizedString(@"加载中...", @"");
+        }
+        [self getBlogList:[blogItems count] length:SECTION_LENGTH useCacheFirst:NO];
+        blogCountBeforeLoading = [blogItems count];
+        return;
+    }
+//    LRTableViewCell *cell = (LRTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
+//        HomeViewController *webViewController = [[HomeViewController alloc] init];
+//        webViewController.articleList = articleItems;
+//        webViewController.articlePosition = indexPath.row;
+//        webViewController.coverImage = cell.coverImageView.image;
+//        self.selectID = indexPath;
+//        webViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    
+//        [self presentModalViewController:webViewController animated:YES];
+//    
+//        [webViewController release];
+    }
 }
 
 // Reset and reparse

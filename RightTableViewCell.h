@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RightTableViewCell : UITableViewCell
+@interface RightTableViewCell : UITableViewCell{
+//    IBOutlet UILabel *nameLable;
+//    IBOutlet UIImageView *iconView;
+    IBOutlet UILabel *nameLable;
+    IBOutlet UIImageView *iconView;
+}
 
+-(void)setBackgroundColor:(UIColor *)backgroundColor;
+-(void)setBackgroundImage:(UIImage *)themImage;
+-(void)setIcon:(UIImage *)newIcon;
+-(void)setName:(NSString *)newName;
 @end

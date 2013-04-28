@@ -36,7 +36,7 @@ static ImageCacher *defaultCacher=nil;
 + (id)allocWithZone:(NSZone *)zone
 {
     
-    return [self defaultCacher];
+    return [[self defaultCacher] retain];
 }
 
 
@@ -66,14 +66,18 @@ static ImageCacher *defaultCacher=nil;
 
 -(void)cacheImage:(NSDictionary*)aDic
 {
-    NSURL *aURL=[aDic objectForKey:@"url"];
-    
+//    NSURL *aURL=[aDic objectForKey:@"url"];
+//    if (aURL) {
+//        NSLog(@"aURL %@",aURL);
+//    }
+//    NSFileManager *fileManager=[NSFileManager defaultManager];
+//    NSData *data=[NSData dataWithContentsOfURL:aURL];
+//    UIImage *image=[UIImage imageWithData:data];
+    NSURL *aURL = [NSURL URLWithString:[aDic objectForKey:@"url"]];
     NSFileManager *fileManager=[NSFileManager defaultManager];
-    NSData *data=[NSData dataWithContentsOfURL:aURL] ;
-    UIImage *image=[UIImage imageWithData:data];
-    if (image==nil) {
-        return;
-    }
+    NSData *imageData = [NSData dataWithContentsOfURL:aURL];
+    UIImage *image = [UIImage imageWithData:imageData];
+
     CGSize origImageSize= [image size];
     
     CGRect newRect;

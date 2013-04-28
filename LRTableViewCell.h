@@ -35,7 +35,7 @@
     UILabel *_openCountLabel;
     
     UIImageView *_creatorImageView;
-    NSString *creatorImageUrl;
+    NSString *imageUrl;
     
     UIButton *_favoriteButton;
     
@@ -69,5 +69,5 @@
 - (void)setRead:(BOOL)read;
 
 + (CGFloat)rowHeightForObject:(id)object;
-
++ (UIImage*)getDefaultUrlImage;
 @end

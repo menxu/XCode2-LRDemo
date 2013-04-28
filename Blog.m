@@ -12,7 +12,6 @@
 #import <CoreData/CoreData.h>
 #import "Client.h"
 
-
 @implementation Blog
 
 @synthesize Id              = _Id;
@@ -43,21 +42,23 @@
                     retain];
     
     //如果博客封面路径是相对路径改为绝对路径
-    if ([_ImageUrl hasPrefix:@"../"]) {
-        NSRange range = {0};
-        range.location = 2;
-        range.length = [_ImageUrl length] - range.location;
-        
-        NSString *imageFullPath = [[NSString alloc] initWithFormat:@"%@%@%@%@%@",
-                                   MAIN_PROCOTOL,MAIN_HOST,MAIN_PORT,DOWNLOAD_RESOURCE_PATH,[_ImageUrl substringWithRange:range]];
-        [_ImageUrl release];
-        _ImageUrl = imageFullPath;
-        NSString *imageFullPath2 = [[NSString alloc] initWithFormat:@"%@%@%@%@%@",
-                                    MAIN_PROCOTOL,MAIN_HOST,MAIN_PORT,DOWNLOAD_RESOURCE_PATH,[[dictionary objectForKey:@"image_url"] substringWithRange:range]];
-        _SourceImageUrl = imageFullPath2;
-    }else{
-        _SourceImageUrl = [_ImageUrl copy];
+    NSDictionary *img_dic = [dictionary objectForKey:@"image_url"];
+    if (img_dic) {
+        NSDictionary *img_dic2 = [img_dic objectForKey:@"image_url"];
+        if (img_dic2) {
+            _ImageUrl = [[NSString alloc] initWithFormat:@"%@%@%@%@",
+                         MAIN_PROCOTOL,MAIN_HOST,MAIN_PORT,[img_dic2 objectForKey:@"url"]];
+//            NSLog(@"_ImageUrl: -------> %@", _ImageUrl);
+        }
     }
+//    if ([_ImageUrl hasPrefix:@"../"]) {
+//        NSRange range = {0};
+//        range.location = 2;
+//        range.length = [_ImageUrl length] - range.location;
+//        
+//        NSString *imageFullPath = [[NSString alloc] initWithFormat:@"%@%@%@%@%@%@",
+//                                   MAIN_PROCOTOL,MAIN_HOST,MAIN_PORT,MAIN_SPACE,BLOG_LISTS,[_ImageUrl substringWithRange:range]];
+//    }
 }
 
 - (id)initWithJsonDictionary:(NSDictionary*)dictionary {

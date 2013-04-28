@@ -11,13 +11,13 @@
 @interface LeftViewController : UIViewController{
     IBOutlet UITableView *tableView;
     
- IBOutlet UILabel *nameLabel;
+    IBOutlet UILabel *nameLabel;
     IBOutlet UIImageView *userAvatarImageView;
     
- IBOutlet UILabel *homeLabel;
- IBOutlet UILabel *categoryLabel;
- IBOutlet UILabel *blogLabel;
- IBOutlet UILabel *settingLabel;
+    IBOutlet UILabel *homeLabel;
+    IBOutlet UILabel *categoryLabel;
+    IBOutlet UILabel *blogLabel;
+    IBOutlet UILabel *settingLabel;
     
 }
 @property (nonatomic,retain) UITableView *tableView;

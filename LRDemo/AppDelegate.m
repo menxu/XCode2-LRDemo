@@ -60,10 +60,17 @@
     
     self.window.rootViewController = self.deckController;
 }
-
+- (void)initCaChe{
+    //首次打开APP 创建缓存文件夹
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"initCaChe"]==nil) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:pathInCacheDirectory(@"com.xmly") withIntermediateDirectories:YES attributes:nil error:nil];
+        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithBool:YES] forKey:@"initCaChe"];
+    }
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease] ;
+    [self initCaChe];
     [self setupMainView_iPhone];
     [self.window makeKeyAndVisible];
     return YES;

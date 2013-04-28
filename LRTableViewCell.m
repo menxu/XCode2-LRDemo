@@ -8,10 +8,12 @@
 
 #import "LRTableViewCell.h"
 #import "GlobalDef.h"
+#import "ImageCacher.h"
+//#import "UIImageView+WebCache.h"
 
 @implementation LRTableViewCell
 
-//static UIImage* defaultCoverImage;
+static UIImage* defaultUrlImage;
 static UIImage* defaultBackgroundImage;
 //static UIImage* defaultTagBgImage;
 
@@ -44,7 +46,7 @@ static UIImage* defaultBackgroundImage;
 //    [self setCategoryName:blog.CategoryId];
     [self setTitle:blog.Title];
     [self setContent:blog.Content];
-//    [self setSourseImage:blog.SourceImageUrl];
+    [self setSourseImage:blog.ImageUrl];
 //    [self setCreatedTime:blog.CreatedTime];
 
 //    [self setDescription:article.Description];
@@ -69,7 +71,7 @@ static UIImage* defaultBackgroundImage;
         [self.contentView addSubview:_titleLabel];
     }
     
-    NSLog(@"setName:  nameLabel = %@",title);
+//    NSLog(@"setName:  nameLabel = %@",title);
     _titleLabel.text = title ? title : NSLocalizedString(@"未命名", @"nil");
 }
 - (void)setContent:(NSString *)content{
@@ -92,6 +94,29 @@ static UIImage* defaultBackgroundImage;
     _contentLabel.text = content ? content : @"";
     
 }
+- (void)setSourseImage:(NSString *)image_Url{
+    if ([image_Url length] == 0 ) {
+        return;
+    }
+    _creatorImageView = [[UIImageView alloc] init];
+    _creatorImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _creatorImageView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    _creatorImageView.layer.shadowRadius = 1.5f;
+    _creatorImageView.layer.shadowOpacity = 0.5f;
+    
+    [self.contentView addSubview:_creatorImageView];
+    
+    imageUrl = [image_Url copy];
+    
+    if (hasCachedImage(image_Url)) {
+        [_creatorImageView setImage:[UIImage imageWithContentsOfFile:pathForURL(image_Url)]];
+    }else{
+        [_creatorImageView setImage:[UIImage imageNamed:@"DefaultCover.png"]];
+
+        NSDictionary *dic=[NSDictionary dictionaryWithObjectsAndKeys:image_Url,@"url",_creatorImageView,@"imageView",nil];
+        [NSThread detachNewThreadSelector:@selector(cacheImage:) toTarget:[ImageCacher defaultCacher] withObject:dic];
+    }
+}
 
 - (void)setFavorite:(BOOL)favorite tagId:(NSInteger)tagId target:(id)target action:(SEL)selector{
     
@@ -105,7 +130,7 @@ static UIImage* defaultBackgroundImage;
         return 0.0;
     }
     Blog *blog = object;
-    CGFloat creatorImageHeight = [blog.ImageUrl length] > 0 ? COVER_BACKGROUND_HEIGHT : kTableCellSmallMargin;
+    CGFloat urlImageHeight = [blog.ImageUrl length] > 0 ? COVER_BACKGROUND_HEIGHT : kTableCellSmallMargin;
     
     UIFont *titleFont   = nil;
     UIFont *contentFont = nil;
@@ -134,7 +159,7 @@ static UIImage* defaultBackgroundImage;
             contentLabelSize.height = 20*subtitleLabelSize.height;
         }
     }
-    CGFloat textHeight = creatorImageHeight + titleLabelSize.height + subtitleLabelSize.height + SUBTITLE_HEIGHT
+    CGFloat textHeight = urlImageHeight + titleLabelSize.height + subtitleLabelSize.height + SUBTITLE_HEIGHT
     + contentLabelSize.height + (contentLabelSize.height > 0 ? kTableCellSmallMargin : 0);
     return textHeight + kTableCellSmallMargin * 3;
 }
@@ -157,6 +182,7 @@ static UIImage* defaultBackgroundImage;
     _titleLabel.text = nil;
     _titleLabel.textColor = [UIColor blackColor];
     _contentLabel.text = nil;
+//    [_creatorImageView cancelCurrentImageLoad];
     
 }
 
@@ -190,7 +216,7 @@ static UIImage* defaultBackgroundImage;
     //_creatorImageView 在 _titleLabel 之下
     top  = (_titleLabel.frame.origin.y + _titleLabel.frame.size.height);
     left = (CELL_CONTENT_WIDTH - COVER_BACKGROUND_WIDTH) / 2;
-    if ([creatorImageUrl length] > 0) {
+    if ([imageUrl length] > 0) {
         _creatorImageView.contentMode = UIViewContentModeScaleAspectFit;
         _creatorImageView.frame       = CGRectMake(kTableCellSmallMargin,
                                                    top + (COVER_BACKGROUND_HEIGHT - COVER_IMAGE_HEIGHT)/2,
@@ -211,7 +237,7 @@ static UIImage* defaultBackgroundImage;
     if (contentLableSize.height > 0) {
         top += contentLableSize.height + kTableCellSmallMargin;
     }
-    NSLog(@"%d  %d  %d",left,top,subtitleLableSize.height);
+//    NSLog(@"%d  %d  %d",left,top,subtitleLableSize.height);
 }
 
 //theImage为nil时使用默认的CellBackground.png作为表格Cell背景
@@ -240,6 +266,15 @@ static UIImage* defaultBackgroundImage;
     
     return defaultBackgroundImage;
 }
++ (UIImage*)getDefaultUrlImage {
+    
+    if (defaultUrlImage == nil) {
+        defaultUrlImage = [[UIImage imageNamed:@"DefaultCover.png"] retain];
+    }
+    
+    return defaultUrlImage;
+}
+
 
 - (void)dealloc{
     [super dealloc];
