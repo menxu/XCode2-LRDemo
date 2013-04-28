@@ -13,4 +13,5 @@
 + (NSString *)intervalSinceTime:(NSDate *)theBeforeDate andTime:(NSDate *)theLaterDate;
 + (NSDateFormatter *)getDateFormatter;
 + (NSDateFormatter *)getFullDateFormatter;
++(NSString *)md5:(NSString *)str;
 @end
